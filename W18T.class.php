@@ -83,7 +83,7 @@ class W18T
          * In a safer way, retrieve the value of the super global variable
          * known as $_SERVER['SERVER_SOFTWARE']
          */
-        $web_server_information_string = filter_input(INPUT_SERVER,'SERVER_SOFTWARE');
+        $web_server_information_string = $_SERVER['SERVER_SOFTWARE'];
 
         /**
          * Section 3.2
@@ -143,7 +143,8 @@ class W18T
 
             $result = $database->query("SELECT version() AS version");            
             $row = $result->fetch_assoc();
-            $database_server->version = $row['version'];
+            $database_server->version = $this->extract_version_number_from( $row['version'] );
+            $database_server->raw_version = $row['version'];
             }
         else{
             $database_server->name = "Unconnected";
@@ -163,6 +164,7 @@ class W18T
         $operating_system = new stdClass();
         $operating_system->name = PHP_OS;
         $operating_system->version = $this->extract_version_number_from( php_uname('v') );
+        $operating_system->raw_version = php_uname('v');
         $this->operating_system = $operating_system;
         }
 
