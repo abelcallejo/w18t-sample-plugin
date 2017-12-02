@@ -196,7 +196,7 @@ class W18T
     
     public function __toString()
         {
-        return json_encode($this,JSON_PRETTY_PRINT);
+        return json_encode($this);
         }
     }
 
