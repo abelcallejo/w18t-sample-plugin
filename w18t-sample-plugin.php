@@ -21,7 +21,7 @@ class Function_Holder
         $environment = new W18T();
 
         echo "<pre>";
-        echo $environment->interpreter;
+        echo $environment;
         echo "</pre>";
         }
     }
